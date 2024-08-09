@@ -1,0 +1,121 @@
+---
+title: "Title of the presentation"
+email: filippo.gambarota@unipd.it
+web: "filippogambarota.github.io"
+date: last-modified
+author:
+  - Author 1\inst{1}
+  - Author 2\inst{2}
+institute:
+  - \inst{1} Affiliation 1
+  - \inst{2} Affiliation 2
+subtitle: "Subtitle of the presentation"
+bibliography: "https://raw.githubusercontent.com/filippogambarota/bib-database/main/references.bib"
+cls: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
+format:
+  minimal-beamer: default
+engine: knitr
+nocite: |
+  @Pustejovsky2018-yy, @Hedges2010-ja, @Tipton2015-ph,
+  @Viechtbauer2020-bd, @Dai2021-as, @Li2016-bv, @Fletcher2021-hv,
+  @Miller2009-hp, @Olsson-Collentine2023-sj
+toc: true
+#final-slide-logo: img/psicostat-logo.pdf
+---
+
+```{r}
+#| include: false
+# font size for the code chunks and output
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$size != "normalsize", paste0("\n \\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+})
+```
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(echo = FALSE,
+                      size = "footnotesize",
+                      comment = "#>")
+
+# logo psicostat
+psicostat <- "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
+```
+
+```{r}
+#| label: packages
+#| include: false
+library(ggplot2)
+library(kableExtra)
+library(viridis)
+
+mtheme <- function(){
+  theme_minimal(15) +
+    theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        strip.text = element_text(face = "bold"),
+        panel.grid.minor = element_blank())
+}
+theme_set(mtheme())
+```
+
+# Section
+
+## Slide
+
+Some text in the standard format. With a reference @Viechtbauer2010-sq and [@Viechtbauer2010-sq].
+
+## Slide with bullets
+
+- first
+- second
+- third
+
+## Slide with code (no output)
+
+Some useful code here:
+
+```{r}
+#| echo: true
+x <- rnorm(100)
+xc <- x - mean(x)
+```
+
+## Slide with code (output)
+
+```{r}
+#| echo: true
+summary(iris)
+```
+
+# Another section
+
+## Tables
+
+```{r}
+#| echo: false
+dat <- data.frame(Math = c(
+"$x^2 + y^2 = z^2$",
+"$\\frac{1}{2}$"
+))
+kable(dat, escape = FALSE, booktabs = TRUE) |> 
+  kable_styling()
+```
+
+## Figures
+
+```{r}
+iris |> 
+  ggplot(aes(x = Sepal.Length, y = Petal.Width, color = Species)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+## References {.allowframebreaks}
+
+\footnotesize
+
+::: {#refs}
+:::
