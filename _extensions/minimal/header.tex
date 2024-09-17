@@ -1,7 +1,16 @@
+%% PACKAGES ---------------------------------------------------------------------------------------------------------
+
 \usepackage{fontawesome5}
 \setbeamertemplate{frametitle continuation}[from second]
 \usepackage{booktabs}
 \usepackage{amsmath}
+
+%% COMMANDS ---------------------------------------------------------------------------------------------------------
+
+% fixing the tables problem, thanks to https://github.com/quarto-dev/quarto-cli/issues/10019#issuecomment-2169284336
+\newcommand{\theHtable}{\thetable}
+
+%% COLORS -----------------------------------------------------------------------------------------------------------
 
 \definecolor{linkcol}{HTML}{ff46a5}
 % Set all text colors to black
@@ -23,6 +32,16 @@
 \setbeamercolor{section title}{fg=white} 
 \setbeamercolor{section in toc}{fg=black}
 
+\setbeamertemplate{itemize item}{\color{black}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{black}$\blacksquare$}
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+
+%% FONTS -----------------------------------------------------------------------------------------------------------
+
 % Make section titles have the same size and style as frame titles
 %\setbeamerfont{section title}{size=32pt,series=\bfseries} % Matches default frame title
 \setbeamerfont{section title}{size={\fontsize{19}{36}}, series=\bfseries}
@@ -38,11 +57,3 @@
 \AtBeginSection{
     \frame{\sectionpage}
 }
-
-\setbeamertemplate{itemize item}{\color{black}$\blacktriangleright$}
-\setbeamertemplate{itemize subitem}{\color{black}$\blacksquare$}
-\setbeamercolor{bibliography item}{fg=black}
-\setbeamercolor{bibliography entry author}{fg=black}
-\setbeamercolor{bibliography entry title}{fg=black}
-\setbeamercolor{bibliography entry location}{fg=black}
-\setbeamercolor{bibliography entry note}{fg=black}
